@@ -1,0 +1,16 @@
+# IntelliJ project files
+.idea
+*.iml
+*.gitignore
+#out
+gen
+#for .class file
+*.class
+#for maven compiled target
+target/
+#for eclipse project
+.classpath
+.project
+.settings/
+#for my dev draft
+dev/

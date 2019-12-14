@@ -1,0 +1,40 @@
+15-Dec-2019 03:28:56.691 INFO [Thread-5] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8009"]
+
+15-Dec-2019 04:58:33.597 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version:        Apache Tomcat/8.5.41
+15-Dec-2019 04:58:33.671 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 4 2019 09:17:16 UTC
+15-Dec-2019 04:58:33.681 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server number:         8.5.41.0
+15-Dec-2019 04:58:33.681 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+15-Dec-2019 04:58:33.682 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            3.10.0-1062.el7.x86_64
+15-Dec-2019 04:58:33.713 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+15-Dec-2019 04:58:33.714 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/lib/jvm/java-1.8-openjdk/jre
+15-Dec-2019 04:58:33.715 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_212-b04
+15-Dec-2019 04:58:33.719 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            IcedTea
+15-Dec-2019 04:58:33.720 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /usr/local/tomcat
+15-Dec-2019 04:58:33.721 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/local/tomcat
+15-Dec-2019 04:58:33.723 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties
+15-Dec-2019 04:58:33.725 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+15-Dec-2019 04:58:33.726 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dfile.encoding=UTF-8
+15-Dec-2019 04:58:33.726 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+15-Dec-2019 04:58:33.737 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+15-Dec-2019 04:58:33.737 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+15-Dec-2019 04:58:33.741 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+15-Dec-2019 04:58:33.751 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/usr/local/tomcat
+15-Dec-2019 04:58:33.757 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/local/tomcat
+15-Dec-2019 04:58:33.758 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/temp
+15-Dec-2019 04:58:33.778 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.21] using APR version [1.6.5].
+15-Dec-2019 04:58:33.787 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+15-Dec-2019 04:58:33.788 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+15-Dec-2019 04:58:33.914 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1b  26 Feb 2019]
+15-Dec-2019 04:58:38.553 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+15-Dec-2019 04:58:38.923 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+15-Dec-2019 04:58:39.780 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["ajp-nio-8009"]
+15-Dec-2019 04:58:39.841 INFO [main] org.apache.tomcat.util.net.NioSelectorPool.getSharedSelector Using a shared selector for servlet write/read
+15-Dec-2019 04:58:39.873 INFO [main] org.apache.catalina.startup.Catalina.load Initialization processed in 32863 ms
+15-Dec-2019 04:58:40.752 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+15-Dec-2019 04:58:40.753 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet Engine: Apache Tomcat/8.5.41
+15-Dec-2019 04:58:41.233 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/usr/local/tomcat/webapps/ROOT]
+15-Dec-2019 04:58:53.704 WARNING [localhost-startStop-1] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [253] milliseconds.
+15-Dec-2019 04:58:54.103 INFO [localhost-startStop-1] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/usr/local/tomcat/webapps/ROOT] has finished in [12,869] ms
+15-Dec-2019 04:58:54.207 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+15-Dec-2019 04:58:54.757 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["ajp-nio-8009"]
+15-Dec-2019 04:58:54.800 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in 14926 ms
