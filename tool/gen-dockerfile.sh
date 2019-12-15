@@ -61,7 +61,7 @@ function add_tomcat() {
 # web serve with tomcat
 #FROM tomcat:8.5.41-jre8-alpine
 FROM tomcat:${TOMCAT_VERSION}-alpine
-LABEL MAINTAINER ymc-github <yemiancheng@gmail.com>
+LABEL MAINTAINER $author <$email>
 #https://hub.docker.com/_/tomcat?tab=tags&page=1&name=alpine
 #https://hub.docker.com/_/openjdk?tab=tags&page=1&name=8-jdk-alpine
 #https://hub.docker.com/_/openjdk?tab=tags&page=1&name=8-jre-alpine
@@ -86,7 +86,7 @@ function add_redis() {
 # data serve with redis
 #https://hub.docker.com/_/redis?tab=tags&page=1&name=alpine
 FROM redis:${REDIS_VERSION}-alpine3.10
-LABEL MAINTAINER ymc-github <yemiancheng@gmail.com>
+LABEL MAINTAINER $author <$email>
 #COPY redis-master/conf/redis.conf /usr/local/etc/redis/redis.conf
 CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 EOF
@@ -108,7 +108,52 @@ function add_activemq() {
 ######
 # https://hub.docker.com/r/rmohr/activemq
 FROM rmohr/activemq:${ACTIVEMQ_VERSION}-alpine
-LABEL MAINTAINER ymc-github <yemiancheng@gmail.com>
+LABEL MAINTAINER $author <$email>
+EOF
+    )
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT"
+}
+
+function add_nodejs() {
+    local author=
+    local email=
+    local TXT=
+    author=ymc-github
+    email=yemiancheng@gmail.com
+    local TXT=
+    TXT=$(
+        cat <<EOF
+######
+# See: https://hub.docker.com/_/nodejs
+######
+FROM node:${NODEJS_VERSION}-alpine3.10
+LABEL MAINTAINER $author <$email>
+EXPOSE 3000
+ENV PROJECT_DIR=/usr/share/nginx/html
+WORKDIR \$PROJECT_DIR
+CMD ["node", "./fe/index.js"]
+
+EOF
+    )
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT"
+}
+
+function add_nginx() {
+    local author=
+    local email=
+    local TXT=
+    author=ymc-github
+    email=yemiancheng@gmail.com
+    local TXT=
+    TXT=$(
+        cat <<EOF
+######
+# See: https://hub.docker.com/_/nginx
+######
+FROM nginx:${NGINX_VERSION}-alpine
+LABEL MAINTAINER $author <$email>
 
 EOF
     )
@@ -146,6 +191,17 @@ function main_fun() {
     path="$THIS_PROJECT_PATH/activemq/Dockerfile"
     echo "gen Dockerfile :$path"
     TXT=$(add_activemq)
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT" >"$path"
+    path="$THIS_PROJECT_PATH/nodejs/Dockerfile"
+    echo "gen Dockerfile :$path"
+    TXT=$(add_nodejs)
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT" >"$path"
+
+    path="$THIS_PROJECT_PATH/nginx/Dockerfile"
+    echo "gen Dockerfile :$path"
+    TXT=$(add_nginx)
     TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
     echo "$TXT" >"$path"
 }

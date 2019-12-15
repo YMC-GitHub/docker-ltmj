@@ -124,8 +124,9 @@ function add_redis() {
         ipv4_address: 172.20.1.4
     volumes:
       - ./redis-master/data:/data
-      - ./redis-slave/conf/redis.conf:/usr/local/etc/redis/redis.conf
-      #- ./redis-slave/conf/redis.conf:etc/redis/redis.conf
+      - /etc/localtime:/etc/localtime
+      - ./redis-master/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      #- ./redis-master/conf/redis.conf:etc/redis/redis.conf
     #command: redis-server /usr/local/etc/redis/redis.conf
     #command: redis-server /etc/redis/redis.conf
     environment:
@@ -151,6 +152,7 @@ function add_redis() {
       ### port 6380
       ### masterauth yourpassword
       ### slaveof redis_master 6379
+      - /etc/localtime:/etc/localtime
       - ./redis-slave/conf/redis.conf:/usr/local/etc/redis/redis.conf
       #- ./redis-slave/conf/redis.conf:etc/redis/redis.conf
     #command: redis-server /usr/local/etc/redis/redis.conf
@@ -183,6 +185,7 @@ function add_activemq() {
     volumes:
       - ./activemq/data:/data/activemq
       - ./activemq/logs:/var/log/activemq
+      - /etc/localtime:/etc/localtime
     environment:
       ACTIVEMQ_ADMIN_LOGIN: admin
       ACTIVEMQ_ADMIN_PASSWORD: admin
@@ -196,14 +199,69 @@ EOF
     TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
     echo "$TXT"
 }
+function add_nodejs() {
+    local TXT=
+    TXT=$(
+        cat <<EOF
+  nodejs:
+    hostname: nodejs
+    container_name: ${CM_NODEJS_NAME}
+    build: ./nodejs
+    ports:
+      - 3000:3000
+    networks:
+      staticnymc:
+        ipv4_address: 172.20.1.7
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - /etc/localtime:/etc/localtime
+    restart: always
+    links:
+      - mysql:mysql
+EOF
+    )
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT"
+}
+function add_nginx() {
+    local TXT=
+    TXT=$(
+        cat <<EOF
+  nginx:
+    hostname: nginx
+    container_name: ${CM_NGINX_NAME}
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:80
+    networks:
+      staticnymc:
+        ipv4_address: 172.20.1.8
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./nginx/ca/server.crt/:/etc/nginx/server.crt:ro
+      - ./nginx/ca/server.key/:/etc/nginx/server.key:ro
+      - /etc/localtime:/etc/localtime
+    restart: always
+    links:
+    - tomcat:__DOCKER_TOMCAT__
+    - nodejs:__DOCKER_FE_NODEJS__
+EOF
+    )
+    TXT=$(echo "$TXT" | sed "s/^ *#.*//g" | sed "/^$/d")
+    echo "$TXT"
+}
 
 function main_fun() {
     local name="Ye Miancheng"
     local email="ymc.github@gmail.com"
     local homepage="https://github.com/YMC-GitHub"
     local TXT=
-    #local nginx_txt=$(add_nginx)
-    #local nodejs_txt=$(add_nodejs)
+    local nginx_txt=$(add_nginx)
+    local nodejs_txt=$(add_nodejs)
     local mysql_txt=$(add_mysql)
     local redis_txt=$(add_redis)
     local network_txt=$(add_network)
@@ -217,6 +275,8 @@ $mysql_txt
 $redis_txt
 $tomcat_txt
 $activemq_txt
+$nodejs_txt
+$nginx_txt
 $network_txt
 
 EOF
