@@ -234,7 +234,7 @@ function add_nginx() {
     ports:
       - 80:80
       - 443:443
-      - 8080:80
+      - 8081:80
     networks:
       staticnymc:
         ipv4_address: 172.20.1.8
