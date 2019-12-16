@@ -14,3 +14,9 @@ target/
 .settings/
 #for my dev draft
 dev/
+#for ngixn crt
+*.key
+*.pem
+*.crt
+*.csr
+*.srl
